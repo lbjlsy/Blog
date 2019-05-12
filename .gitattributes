@@ -1,1 +1,4 @@
-*.rb linguist-language=JavaScript
+*.css linguist-language=javascript
+*.less linguist-language=javascript
+*.js linguist-language=javascript
+*.html linguist-language=javascript
