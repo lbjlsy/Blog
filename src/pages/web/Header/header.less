@@ -1,0 +1,145 @@
+.header {
+  font: 0.8rem 'Ubuntu', sans-serif;
+  width: 100%;
+  z-index: 2;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.95);
+  transition: all 0.4s ease;
+  box-shadow: 0 1px 40px -8px rgba(0, 0, 0, 0.5);
+  &:hover {
+    background: #ffffff;
+  }
+  .logo {
+    display: inline-block;
+    width: 11rem;
+    height: 2.2rem;
+    margin-left: 1.5rem;
+    background: url(../../../assets/lebron-king.png) no-repeat center center;
+    background-size: cover;
+  }
+  .default {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    li {
+      // cursor: pointer;
+      position: relative;
+      display: inline-block;
+      margin-right: 1.4rem;
+      padding-right: 0.2rem;
+      a {
+        display: block;
+        height: 3.25rem;
+        line-height: 3.25rem;
+        color: #666;
+      }
+      cursor: pointer;
+      span {
+        transition: all 400ms linear;
+      }
+      i {
+        vertical-align: middle;
+        display: inline-block;
+        margin-right: 0.4rem;
+      }
+      &:hover {
+        a {
+          color: #ffa500;
+        }
+        i:before {
+          -webkit-text-fill-color: #ffa500;
+        }
+        .icon-home {
+          animation: home 2s ease infinite;
+        }
+        .icon-blog {
+          animation: blog 2s ease infinite;
+        }
+        .icon-yinle {
+          transition: all;
+          animation: yinle 2s ease infinite;
+        }
+      }
+    }
+  }
+}
+.header-top {
+  box-shadow: none;
+  background: transparent;
+  transition: all 0.4s ease;
+}
+@keyframes home {
+  0% {
+    transform: translate(0, 0);
+  }
+  6% {
+    transform: translate(5px, 0);
+  }
+  12% {
+    transform: translate(0, 0);
+  }
+  18% {
+    transform: translate(5px, 0);
+  }
+
+  24% {
+    transform: translate(0, 0);
+  }
+  30% {
+    transform: translate(5px, 0);
+  }
+  100%,
+  36% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes blog {
+  0% {
+    transform: translate(0, -5px);
+  }
+  6% {
+    transform: translate(0, 5px);
+  }
+  12% {
+    transform: translate(0, -5px);
+  }
+  18% {
+    transform: translate(0, 5px);
+  }
+
+  24% {
+    transform: translate(0, -5px);
+  }
+  30% {
+    transform: translate(0, 5px);
+  }
+  100%,
+  36% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes yinle {
+  0% {
+    transform: scale(1);
+  }
+  10%,
+  20% {
+    transform: scale(0.9) rotate(-8deg);
+  }
+  30%,
+  50%,
+  70% {
+    transform: scale(1.3) rotate(8deg);
+  }
+  40%,
+  60% {
+    transform: scale(1.3) rotate(-8deg);
+  }
+  100%,
+  80% {
+    transform: scale(1) rotate(0);
+  }
+}
