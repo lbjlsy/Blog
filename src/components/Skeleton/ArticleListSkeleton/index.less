@@ -1,0 +1,42 @@
+.skeleton_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40rem;
+  height: 15rem;
+  margin: 0 auto 2rem;
+
+  .meta {
+    max-width: 18rem;
+    width: 18rem;
+    margin-right: 1.8rem;
+    .title {
+      margin: 0.75rem 0;
+    }
+
+    .info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .summary {
+      margin-top: 0.6rem;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+  }
+
+  .img {
+    width: 24rem;
+  }
+}
+
+.skeleton_wrapper_reverse {
+  flex-direction: row-reverse;
+  text-align: right;
+  .meta {
+    margin-right: 0;
+    margin-left: 1.8rem;
+  }
+}

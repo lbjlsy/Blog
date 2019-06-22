@@ -1,30 +1,19 @@
-import React, { lazy } from 'react'
+import React, { lazy } from 'react';
 // const Archive = loadable(()=>import('../pages/web/archive'))
 const NotFoundPage = lazy(() =>
   import(
-    /*
-    webpackChunkName: "not-found-page",
-    webpackPrefetch: true
-  */
-    '../pages/web/NotFoundPage'
+    /*webpackChunkName: "not-found-page",webpackPrefetch: true*/ '../components/Common/NotFoundPage'
   )
 );
 const Home = lazy(() =>
-  import(
-    /*
-    webpackChunkName: "home",
-    webpackPrefetch: true
-  */
-    '../pages/web/Home'
-  )
+  import(/*webpackChunkName: "home",webpackPrefetch: true*/ '../pages/Home')
 );
 const Blog = lazy(() =>
+  import(/*webpackChunkName: "blog",webpackPrefetch: true*/ '../pages/Blog')
+);
+const BlogDetail = lazy(() =>
   import(
-    /*
-    webpackChunkName: "blog",
-    webpackPrefetch: true
-  */
-    '../pages/web/Blog'
+    /*webpackChunkName: "blog",webpackPrefetch: true*/ '../pages/BlogDetail'
   )
 );
 const Music = lazy(() =>
@@ -33,7 +22,7 @@ const Music = lazy(() =>
     webpackChunkName: "music",
     webpackPrefetch: true
   */
-    '../pages/web/Music'
+    '../pages/Music'
   )
 );
 const webRoutes = [
@@ -41,33 +30,31 @@ const webRoutes = [
     menu: true,
     icon: 'home',
     title: '首页',
-    path: '/web/home',
+    path: '/home',
     component: Home
   },
   {
     menu: true,
     icon: 'blog',
     title: 'blog',
-    path: '/web/blog',
+    path: '/blog',
     component: Blog
+  },
+  {
+    menu: false,
+    path: '/article/:id',
+    component: BlogDetail
   },
   {
     menu: true,
     icon: 'blog',
     title: 'music',
-    path: '/web/music',
+    path: '/music',
     component: Music
   },
   {
     component: NotFoundPage
   }
-  // {
-  //   menu: true,
-  //   icon: 'edit',
-  //   title: '归档',
-  //   path: '/web/archive',
-  //   component: Archive
-  // }
 ];
 
 export default webRoutes;

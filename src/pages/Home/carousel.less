@@ -1,0 +1,54 @@
+.carousel {
+  min-height: 100vh;
+  // background: url('../../../assets/kyotoanimation.png');
+  background: #666666;
+  .background {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url('../../assets/lebron-hand.jpeg');
+    // background-image: url("https://yancey-assets.oss-cn-beijing.aliyuncs.com/150be0_a045e63424e74c0cb0e578f5e7d8d1e1_mv2_d_2048_1365_s_2.jpg?x-oss-process=image/format,webp");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 1;
+    transition: 1s opacity linear;
+  }
+  .head-line {
+    position: relative;
+    color: #fff;
+    font-size: 4rem;
+    z-index: 1;
+    user-select: none;
+    top: 36%;
+    transition: all 400ms ease;
+    max-width: 27rem;
+    margin: 0 auto;
+    text-align: center;
+    letter-spacing: 0.25rem;
+  }
+  .contact {
+    position: relative;
+    z-index: 1;
+    max-width: 27rem;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 10px;
+    top: 39%;
+    ul {
+      text-align: center;
+      li {
+        outline: none;
+        position: relative;
+        display: inline-block;
+        margin: .7rem;
+        a {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

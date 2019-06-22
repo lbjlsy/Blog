@@ -1,0 +1,175 @@
+.container {
+  min-height: 100vh;
+  .bg_header {
+    display: flex;
+    justify-content: center;
+    padding-top: 15rem;
+    width: 100%;
+    height: 22rem;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    background-image: url('../../assets/blog_page_header.jpg');
+    span {
+      font-size: 3rem;
+      background: -webkit-gradient(
+        linear,
+        right top,
+        left top,
+        color-stop(33%, #c4987a),
+        color-stop(73%, #ffd5bf)
+      );
+      background: -webkit-linear-gradient(right, #c4987a 33%, #ffd5bf 73%);
+      background: linear-gradient(to left, #c4987a 33%, #ffd5bf 73%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+  .content-list {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 2rem;
+    width: 62rem;
+    margin: 3rem auto 0;
+    .basic-list {
+      font-family: 'Ubuntu', sans-serif;
+      display: flex;
+      width: 40rem;
+      height: 15rem;
+      margin: 0 auto 2rem;
+      text-align: right;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 20px -8px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      .basic-item-left {
+        max-width: 18rem;
+        width: 18rem;
+        padding: 1rem 1.8rem;
+        background: #fff;
+        .item-released {
+          font-size: 0.6rem;
+          color: #888;
+        }
+        .item-title {
+          h3 {
+            color: #504e4e;
+            font-size: 0.9rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin: 1rem 0;
+          }
+        }
+        .item-information {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          font-size: 0.6rem;
+          color: #888;
+        }
+        .item-introduction {
+          color: rgba(0, 0, 0, 0.66);
+          text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+          font-size: 0.75rem;
+          margin-top: 1rem;
+          line-height: 1.5;
+          height: 5.6rem;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 5;
+          overflow: hidden;
+        }
+      }
+      .basic-item-right {
+        overflow: hidden;
+        max-width: 22rem;
+        width: 22rem;
+        cursor: pointer;
+        &:hover .container-img {
+          transform: scale(1.1);
+        }
+        .container-img {
+          height: 100%;
+          background-color: rgba(245, 245, 245, 0.88);
+          transition: all 500ms linear;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+    .basic-direction {
+      flex-direction: row-reverse;
+      text-align: left;
+    }
+    aside {
+      margin-top: .7rem;
+      h1 {
+        display: flex;
+        align-items: center;
+        width: 12rem;
+        margin-bottom: 0.8rem;
+        padding-left: 0.2rem;
+        padding-bottom: 0.4rem;
+        border-bottom: 1px dashed #e6e6e6;
+        .tags-text {
+          margin-left: 0.6rem;
+          font-size: 0.9rem;
+          font-weight: 400;
+          color: #666;
+        }
+      }
+      ul {
+        li {
+          display: inline-block;
+          height: 28px;
+          line-height: 28px;
+          position: relative;
+          font-size: 12px;
+          margin-bottom: 1rem;
+          a {
+            display: inline-block;
+            height: 28px;
+            line-height: 28px;
+            position: relative;
+            font-size: 12px;
+            margin-bottom: 1rem;
+            margin-left: 20px;
+            padding: 0 10px 0 12px;
+            background: #1abc9c;
+            color: #fafafa;
+            text-decoration: none;
+            border-bottom-right-radius: 4px;
+            border-top-right-radius: 4px;
+            &::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: -14px;
+              border-color: transparent #1abc9c transparent transparent;
+              border-style: solid;
+              border-width: 14px 14px 14px 0;
+            }
+            &::after {
+              content: '';
+              position: absolute;
+              top: 12px;
+              left: 0;
+              width: 6px;
+              height: 6px;
+              border-radius: 50%;
+              background: #fff;
+              box-shadow: -1px -1px 1px 0 rgba(0, 0, 0, 0.3);
+            }
+          }
+        }
+      }
+    }
+  }
+}

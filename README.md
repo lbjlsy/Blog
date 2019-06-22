@@ -7,9 +7,9 @@ Lebron james G.E.M Theme Blog
 
 ## Introduction
 
-这是我写的第一个博客网站。至于为什么写，无非是看到别人的博客太好看了😂
+这是我写的第一个博客网站。至于为什么写，因为公司项目都是使用vue，使用react练练手，还有是看到别人的博客太好看了😂
 
-- 前端主要技术栈是react + react-router-4 + react-redux;
+- 前端主要技术栈是react + react-router-4 + mobx;
 
 ## Detail
 

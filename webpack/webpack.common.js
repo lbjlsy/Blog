@@ -3,12 +3,21 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin'); // 每次构建前清理 /dist 文件夹
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 自动将html文件注入打包后的文件名称
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 在生产环境下将style行内标签转换为link标签
+const cssRegex = /\.css$/;
+const cssModuleRegex = /\.module\.css$/;
+const lessRegex = /\.less$/;
+const lessModuleRegex = /\.module\.less$/;
 
 function basicConfig(env) {
   const nodeEnv = env !== 'production';
   return {
     entry: {
       app: './src/index.js'
+    },
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, '../src'),
+      }
     },
     module: {
       rules: [
@@ -28,17 +37,50 @@ function basicConfig(env) {
           }
         },
         {
-          test: /\.(less|css)$/,
+          test: cssRegex,
+          exclude: cssModuleRegex,
           use: [
-            // {
             nodeEnv ? 'style-loader' : MiniCssExtractPlugin.loader,
             'css-loader',
-            // {
-            //   loader: 'postcss-loader',
-            //   options: {
-            //     plugins: [require('autoprefixer') /*在这里添加*/]
-            //   }
-            // },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [require('autoprefixer')]
+              }
+            },
+          ]
+        },
+        {
+          test: lessRegex,
+          exclude: lessModuleRegex,
+          use: [
+            nodeEnv ? 'style-loader' : MiniCssExtractPlugin.loader,
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [require('autoprefixer')]
+              }
+            },
+            'less-loader'
+          ]
+        },
+        {
+          test: lessModuleRegex,
+          use: [
+            nodeEnv ? 'style-loader' : MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [require('autoprefixer') /*在这里添加*/]
+              }
+            },
             'less-loader'
           ]
         },
