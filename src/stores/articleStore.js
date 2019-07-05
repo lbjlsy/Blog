@@ -1,6 +1,5 @@
 import { observable, computed, autorun, action, flow } from 'mobx';
 import { articleApi } from '../http'
-import { message } from '../utils/tools';
 
 class ArticleStore {
   @observable articleDetail = {};
@@ -12,11 +11,8 @@ class ArticleStore {
   }
   getArticleDetail = flow(function * (id) {
     try {
-      console.log(id, 'getArticleDetail id')
       this.articleListLoading = true
-      this.articleDetail = (yield articleApi.getArticleDetail(id)).data
-    } catch (error) {
-      message('unkonw error!')
+      this.articleDetail = (yield articleApi.getArticleDetail(id)).data || {}
     } finally {
       this.articleListLoading = false
     }

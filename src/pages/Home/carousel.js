@@ -1,47 +1,53 @@
 import React, { Component } from 'react';
 import './carousel.less';
-import champion from '../../assets/lebron-champion.jpg';
-import gem from '../../assets/gem.jpg';
-import hand from '../../assets/lebron-hand.jpeg';
+import { observer, inject } from 'mobx-react';
+
+@inject('homeStore')
+@observer
 class Carousel extends Component {
   state = {
-    imageList: [hand, champion, gem],
-    // imageList: ['lebron-hand.jpeg', 'lebron-champion.jpg', 'lebron-hand.jpeg'],
     backgDom: null,
     index: 0
   };
   componentDidMount() {
+    const { homeStore } = this.props
+    homeStore.getCoverList()
     let backgDom = document.getElementsByClassName('background')[0];
     this.setState({ backgDom });
   }
   prevImage = () => {
-    let { backgDom, index, imageList } = { ...this.state };
+    let { backgDom, index } = this.state
+    const { homeStore } = this.props
+    const { coverImage } = homeStore
     if (index === 0) {
       backgDom.style.backgroundImage = `url(${
-        imageList[imageList.length - 1]
+        coverImage[coverImage.length - 1].image
       })`;
-      this.setState({ index: imageList.length - 1 });
+      this.setState({ index: coverImage.length - 1 });
     } else {
-      backgDom.style.backgroundImage = `url(${imageList[--index]})`;
+      backgDom.style.backgroundImage = `url(${coverImage[--index].image})`;
       this.setState({ index: index });
     }
   };
   nextImage = () => {
-    let { backgDom, index, imageList } = { ...this.state };
-    if (index === imageList.length - 1) {
-      backgDom.style.backgroundImage = `url(${imageList[0]})`;
+    let { backgDom, index } = this.state
+    const { homeStore } = this.props
+    const { coverImage } = homeStore
+    if (index === coverImage.length - 1) {
+      backgDom.style.backgroundImage = `url(${coverImage[0].image})`;
       this.setState({ index: 0 });
     } else {
-      backgDom.style.backgroundImage = `url(${imageList[++index]})`;
+      backgDom.style.backgroundImage = `url(${coverImage[++index].image})`;
       this.setState({ index: index });
     }
   };
   render() {
+    const { homeStore } = this.props
     return (
       <div className="carousel">
-        <section className="background">
-          <h1 className="head-line">Hi, Lebron !</h1>
+        <section className="background" id="home_background">
           <div className="contact">
+            <span className="head-line">Life needs passion.</span>
             <ul>
               <li>
                 <a onClick={this.prevImage}>

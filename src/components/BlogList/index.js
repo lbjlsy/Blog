@@ -5,6 +5,7 @@ import { observer, inject } from 'mobx-react';
 import { formatJSONDate } from '../../utils/tools';
 import Skeleton from '../Skeleton/ArticleListSkeleton';
 import styles from './index.module.less';
+
 @inject('homeStore')
 @observer
 class BlogList extends React.Component {
@@ -22,7 +23,10 @@ class BlogList extends React.Component {
           homeStore.articleList.map(item => {
             return (
               !!item.status === true && (
-                <article key={item.id} className={cs(styles.basic_list, styles.basic_direction)}>
+                <article
+                  key={item.id}
+                  className={cs(styles.basic_list, styles.basic_direction)}
+                >
                   <div className={cs(styles.basic_item_left)}>
                     <p className={cs(styles.item_released)}>
                       Released {formatJSONDate(item.publish_date)}
@@ -35,7 +39,9 @@ class BlogList extends React.Component {
                   <span>1 Like</span>
                   <span>HTTP</span> */}
                     </div>
-                    <p className={cs(styles.item_introduction)}>{item.summary}</p>
+                    <p className={cs(styles.item_introduction)}>
+                      {item.summary}
+                    </p>
                     <div>
                       <a>...</a>
                     </div>

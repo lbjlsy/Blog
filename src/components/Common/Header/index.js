@@ -1,25 +1,37 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './index.less';
+import React, { Component } from "react";
+import cs from "classnames";
+import _ from "lodash";
+import { Link } from "react-router-dom";
+import styles from "./index.module.less";
 
 class Header extends Component {
-  componentDidMount () {
-    let HeaderEle = document.getElementsByClassName('header')[0];
-    window.addEventListener('scroll', function(e) {
-      var t = document.documentElement.scrollTop || document.body.scrollTop;
-      if (t <= 0) {
-        HeaderEle.classList.add('header-top')
-      } else {
-        HeaderEle.classList.remove("header-top")
-      }
-    });
+  state = {
+    isTop: true,
+  };
+  componentDidMount() {
+    window.addEventListener(
+      "scroll",
+      _.throttle((e) => {
+        var t = document.documentElement.scrollTop || document.body.scrollTop;
+        if (!t) {
+          this.setState({
+            isTop: true,
+          });
+        } else {
+          this.setState({
+            isTop: false,
+          });
+        }
+      }, 150)
+    );
   }
 
   render() {
+    const { isTop } = this.state;
     return (
-      <div id="header" className="header header-top">
-        <a className="logo" src="/" />
-        <ul className="default">
+      <div id="header" className={cs(styles.header, isTop ? styles.header_top : '')}>
+        <a className={cs(styles.logo)} src="/" />
+        <ul className={cs(styles.default)}>
           <li>
             <Link to="/home">
               <i className="iconfont icon-home1" />

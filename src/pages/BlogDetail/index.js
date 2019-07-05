@@ -197,9 +197,7 @@ class BlogDetail extends React.Component {
           <Skeletons />
         ) : (
           <>
-            {/* content wrapper */}
             <div className='content_wrapper'>
-              {/* meta */}
               <h1 className='title'>{articleStore.articleDetail.title}</h1>
               <span
                 className='publish_date'

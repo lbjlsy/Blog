@@ -16,7 +16,7 @@ function basicConfig(env) {
     },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '../src'),
+        '@': path.resolve(__dirname, '../src')
       }
     },
     module: {
@@ -47,7 +47,7 @@ function basicConfig(env) {
               options: {
                 plugins: [require('autoprefixer')]
               }
-            },
+            }
           ]
         },
         {
@@ -73,7 +73,7 @@ function basicConfig(env) {
               loader: 'css-loader',
               options: {
                 modules: true
-              },
+              }
             },
             {
               loader: 'postcss-loader',
@@ -98,7 +98,20 @@ function basicConfig(env) {
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         title: 'react',
-        template: path.resolve(__dirname, '../index.html')
+        inject: true,
+        template: path.resolve(__dirname, '../index.html'),
+        minify: {
+          removeComments: true,
+          collapseWhitespace: true,
+          removeRedundantAttributes: true,
+          useShortDoctype: true,
+          removeEmptyAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+          keepClosingSlash: true,
+          minifyJS: true,
+          minifyCSS: true,
+          minifyURLs: true
+        }
       }),
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
@@ -109,8 +122,10 @@ function basicConfig(env) {
     ],
     optimization: {
       splitChunks: {
-        chunks: 'all'
-      }
+        chunks: 'all' // 所有的 chunks 代码公共的部分分离出来成为一个单独的文件
+      },
+      usedExports: true,
+      runtimeChunk: true
     },
     output: {
       filename: nodeEnv ? '[name].js' : 'static/js/[name].[hash].js',
