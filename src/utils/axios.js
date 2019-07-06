@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { message } from '../utils/tools';
-
+import baseApi from './baseApi'
 // import history from '../history';
 
 axios.defaults.timeout = 5 * 10000;
@@ -8,8 +8,7 @@ axios.defaults.timeout = 5 * 10000;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.put['Content-Type'] = 'application/json';
 
-// axios.defaults.baseURL = 'http://101.132.65.150/api/';
-axios.defaults.baseURL = 'http://localhost:7654/api/';
+axios.defaults.baseURL = baseApi;
 
 // config request interceptors
 let cancelFlag = true;
