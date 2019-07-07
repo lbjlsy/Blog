@@ -1,23 +1,3 @@
-// import React, { Component } from 'react';
-// import cs from 'classnames';
-// import styles from './index.module.less'
-// class BlogDetail extends Component {
-//   render () {
-//     return (
-//       <main className={cs(styles.blog_detail)}>
-//         <figure
-//           className={cs(styles.bg_header, 'no-user-select')}
-//         >
-//           <span>BlogDetail</span>
-//         </figure>
-//         BlogDetail
-//       </main>
-//     )
-//   }
-// }
-
-// export default BlogDetail
-
 import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 import { Link, RouteComponentProps } from 'react-router-dom';
@@ -38,9 +18,6 @@ import './index.less';
 // import Skeletons from '@components/Skeletons/BlogDetailSkeleton/Skeletons';
 
 import { formatJSONDate } from '@/utils/tools';
-// import { initLivere, formatJSONDate } from '@tools/tools';
-// import { webpSuffix, byNcSa, livere } from '@constants/constants';
-
 // import routePath from '@constants/routePath';
 
 @inject('articleStore')
