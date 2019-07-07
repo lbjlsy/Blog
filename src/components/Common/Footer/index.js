@@ -1,9 +1,9 @@
 import React from 'react';
-
+import './index.less'
 const Footer = () => {
   return (
-    <footer style={{ textAlign: 'center' }}>
-      Copyright © LEBRON {new Date().getFullYear()}
+    <footer className="footer">
+      Copyright © Lebron James All rights reserved. {new Date().getFullYear()}
     </footer>
   );
 };

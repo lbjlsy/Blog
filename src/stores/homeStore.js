@@ -2,7 +2,6 @@ import { observable, computed, autorun, action, flow } from 'mobx';
 import { homeApi } from '../http';
 
 class HomeStore {
-  @observable articleList = [];
   @observable articleListLoading = false;
   @observable coverImage = [];
   @observable coverLoading = false;
@@ -12,14 +11,7 @@ class HomeStore {
     this.articleListLoading = false
     this.coverImage = []
   }
-  getArticleList = flow(function*() {
-    try {
-      this.articleListLoading = true;
-      this.articleList = (yield homeApi.getArticleList()).data || []
-    } finally {
-      this.articleListLoading = false;
-    }
-  });
+  
   getCoverList = flow(function* (type) {
     try {
       this.coverLoading = true;

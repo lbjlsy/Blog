@@ -1,4 +1,5 @@
 import React, { lazy } from "react";
+import { routePath } from "@utils/constants";
 const NotFoundPage = lazy(() =>
   import(
     /*webpackChunkName: "not-found-page",webpackPrefetch: true*/ "../components/Common/NotFoundPage"
@@ -29,26 +30,31 @@ const webRoutes = [
     menu: true,
     icon: "home",
     title: "首页",
-    path: "/home",
+    path: `${routePath.home}`,
     component: Home
   },
   {
     menu: true,
     icon: "blog",
     title: "blog",
-    path: "/blog",
+    path: `${routePath.blog}`,
     component: Blog
   },
   {
     menu: false,
-    path: "/article/:id",
+    path: `${routePath.blogDetail}:id`,
     component: BlogDetail
+  },
+  {
+    menu: false,
+    path: `${routePath.tag}:id`,
+    component: Blog
   },
   {
     menu: true,
     icon: "blog",
     title: "music",
-    path: "/music",
+    path: `${routePath.music}`,
     component: Music
   },
   {

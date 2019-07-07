@@ -16,7 +16,8 @@ function basicConfig(env) {
     },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '../src')
+        '@': path.resolve(__dirname, '../src'),
+        '@utils': path.resolve(__dirname, '../src/utils')
       }
     },
     module: {

@@ -1,7 +1,6 @@
 import { GET, POST, PUT } from "../utils/axios";
 
 class HomeApi {
-  getArticleList = () => GET("getArticleList");
   getCoverList = () => GET("getCoverList");
 
   // insertFullSiteGrayData = params => POST('/fullSiteGray', params);

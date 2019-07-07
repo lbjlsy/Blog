@@ -46,15 +46,10 @@ import { formatJSONDate } from '@/utils/tools';
 @inject('articleStore')
 @observer
 class BlogDetail extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
 
   async componentDidMount() {
-    const { articleStore, match } = this.props;
-    const curId = match.params.id;
-    await articleStore.getArticleDetail(curId);
+    const { articleStore } = this.props;
+    await articleStore.getArticleDetail();
     this.tocbotInit();
     this.fixToc();
     this.hljsInit();

@@ -9,7 +9,7 @@ switch (baseUrl) {
 	break
   case 'localhost':
   default:
-    baseApi = 'http://localhost:7654/api/'
+    baseApi = 'http://localhost:3000/api/'
     break
 }
 export default baseApi

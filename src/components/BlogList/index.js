@@ -1,31 +1,36 @@
 import React, { useState, useEffect } from 'react';
+import history from '@/history'
 import { Link } from 'react-router-dom';
 import cs from 'classnames';
 import { observer, inject } from 'mobx-react';
-import { formatJSONDate } from '../../utils/tools';
+import { formatJSONDate } from '@/utils/tools';
 import Skeleton from '../Skeleton/ArticleListSkeleton';
 import styles from './index.module.less';
 
-@inject('homeStore')
+@inject('articleStore')
 @observer
 class BlogList extends React.Component {
-  componentWillMount() {
-    const { homeStore } = this.props;
-    homeStore.getArticleList();
+  componentDidMount() {
+    const { articleStore } = this.props;
+    if (history.location.pathname.includes('t')) { 
+      articleStore.getTagDetail();
+    } else {
+      articleStore.getArticleList();
+    }
   }
   render() {
-    const { homeStore } = this.props;
+    const { articleStore } = this.props;
     return (
-      <>
-        {homeStore.articleListLoading ? (
+      <section>
+        {articleStore.articleListLoading ? (
           <Skeleton />
         ) : (
-          homeStore.articleList.map(item => {
+          articleStore.articleList.map((item, index) => {
             return (
               !!item.status === true && (
                 <article
                   key={item.id}
-                  className={cs(styles.basic_list, styles.basic_direction)}
+                  className={cs(styles.basic_list, index % 2 === 0 ? styles.basic_direction : styles.reverse_direction)}
                 >
                   <div className={cs(styles.basic_item_left)}>
                     <p className={cs(styles.item_released)}>
@@ -58,7 +63,7 @@ class BlogList extends React.Component {
             );
           })
         )}
-      </>
+      </section>
     );
   }
 }
