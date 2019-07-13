@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import history from '@/history'
+import history from '@/history';
 import { Link } from 'react-router-dom';
 import cs from 'classnames';
 import { observer, inject } from 'mobx-react';
 import { formatJSONDate } from '@/utils/tools';
-import Skeleton from '../Skeleton/ArticleListSkeleton';
+import Skeleton from '../Skeletons/ArticleList';
 import styles from './index.module.less';
 
 @inject('articleStore')
@@ -12,7 +12,7 @@ import styles from './index.module.less';
 class BlogList extends React.Component {
   componentDidMount() {
     const { articleStore } = this.props;
-    if (history.location.pathname.includes('t')) { 
+    if (history.location.pathname.includes('t')) {
       articleStore.getTagDetail();
     } else {
       articleStore.getArticleList();
@@ -30,7 +30,12 @@ class BlogList extends React.Component {
               !!item.status === true && (
                 <article
                   key={item.id}
-                  className={cs(styles.basic_list, index % 2 === 0 ? styles.basic_direction : styles.reverse_direction)}
+                  className={cs(
+                    styles.basic_list,
+                    index % 2 === 0
+                      ? styles.basic_direction
+                      : styles.reverse_direction
+                  )}
                 >
                   <div className={cs(styles.basic_item_left)}>
                     <p className={cs(styles.item_released)}>
@@ -52,11 +57,11 @@ class BlogList extends React.Component {
                     </div>
                   </div>
                   <div className={cs(styles.basic_item_right)}>
-                    <a>
+                    <Link to={`/article/${item.id}`}>
                       <figure className={cs(styles.container_img)}>
                         <img src={item.header_cover} />
                       </figure>
-                    </a>
+                    </Link>
                   </div>
                 </article>
               )

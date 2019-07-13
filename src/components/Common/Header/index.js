@@ -44,12 +44,12 @@ class Header extends Component {
               <span>&nbsp;Blog</span>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/music">
               <i className="iconfont icon-yinle" />
               <span>&nbsp;Music</span>
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     );

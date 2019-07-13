@@ -1,6 +1,6 @@
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
-import classnames from 'classnames';
+import cs from 'classnames';
 import './index.less';
 
 const Skeletons = () => {
@@ -8,7 +8,7 @@ const Skeletons = () => {
     <>
       {Array.from({ length: 10 }).map((v, k) => (
         <div
-          className={classnames(
+          className={cs(
             'skeleton_wrapper',
             k % 2 !== 0 ? 'skeleton_wrapper_reverse' : ''
           )}

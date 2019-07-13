@@ -15,7 +15,7 @@ import 'tocbot/dist/tocbot.css';
 import './index.less';
 
 // import Like from '@components/Post/Like/Like';
-// import Skeletons from '@components/Skeletons/BlogDetailSkeleton/Skeletons';
+import Skeleton from '@/components/Skeletons/ArticleDetail';
 
 import { formatJSONDate } from '@/utils/tools';
 // import routePath from '@constants/routePath';
@@ -166,7 +166,7 @@ class BlogDetail extends React.Component {
         />
 
         {articleStore.isDetailLoading ? (
-          <Skeletons />
+          <Skeleton />
         ) : (
           <>
             <div className='content_wrapper'>
@@ -181,7 +181,7 @@ class BlogDetail extends React.Component {
                 {formatJSONDate(articleStore.articleDetail.publish_date)}
               </span>
               <span className='page_view'>
-                {articleStore.articleDetail.pv_count} 阅读
+                {/* {articleStore.articleDetail.pv_count} 阅读 */}
               </span>
               <ul className='tags_list'>
                 {/* {articleStore.articleDetail.tags.map(
@@ -292,7 +292,7 @@ class BlogDetail extends React.Component {
               </section>
               {/* Livere Comment */}
               <section className='comment_wrapper'>
-                <p className='comment_title'>Comments</p>
+                {/* <p className='comment_title'>Comments</p> */}
                 {/* <div id='lv-container' data-id='city' data-uid={livere} /> */}
               </section>
             </div>

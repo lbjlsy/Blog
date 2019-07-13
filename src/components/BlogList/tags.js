@@ -16,7 +16,7 @@ class Tag extends React.Component {
   render() {
     const { articleStore } = this.props;
     return (
-      <section>
+      <section className={styles.tag_container}>
         <h1>
           <span className={styles.tags_text}>Tags</span>
         </h1>

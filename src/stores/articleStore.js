@@ -7,6 +7,7 @@ class ArticleStore {
   @observable tags = [];
   @observable articleListLoading = false
   @observable isTagsLoading = false
+  @observable isDetailLoading = false
 
   constructor() {
     this.articleList = []
@@ -36,10 +37,10 @@ class ArticleStore {
 
   getArticleDetail = flow(function * (id) {
     try {
-      this.articleListLoading = true
+      this.isDetailLoading = true
       this.articleDetail = (yield articleApi.getArticleDetail(this.curId)).data || {}
     } finally {
-      this.articleListLoading = false
+      this.isDetailLoading = false
     }
   })
 
