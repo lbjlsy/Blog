@@ -1,25 +1,25 @@
-import React, { lazy, Suspense, Component } from "react";
-import { observer, inject } from "mobx-react";
-import { Route, Switch, Redirect, Router } from "react-router-dom";
-import history from "@/history";
-import Header from "@/components/Common/Header";
-import Footer from "@/components/Common/Footer";
-import Player from "@/components/Player";
-import routes from "@/router/web";
-import { routePath } from "@utils/constants";
-import Loading from "@/components/Common/Loading";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { lazy, Suspense, Component } from 'react';
+import { observer, inject } from 'mobx-react';
+import { Route, Switch, Redirect, Router } from 'react-router-dom';
+import history from '@/history';
+import Header from '@/components/Common/Header';
+import Footer from '@/components/Common/Footer';
+import Player from '@/components/Player';
+import routes from '@/router/web';
+import { routePath } from '@utils/constants';
+import Loading from '@/components/Common/Loading';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = lazy(() =>
-  import(/*webpackChunkName: "home",webpackPrefetch: true*/ "../pages/Home")
+  import(/*webpackChunkName: "home",webpackPrefetch: true*/ '../pages/Home')
 );
 const Blog = lazy(() =>
-  import(/*webpackChunkName: "blog",webpackPrefetch: true*/ "../pages/Blog")
+  import(/*webpackChunkName: "blog",webpackPrefetch: true*/ '../pages/Blog')
 );
 const BlogDetail = lazy(() =>
   import(
-    /*webpackChunkName: "blog",webpackPrefetch: true*/ "../pages/BlogDetail"
+    /*webpackChunkName: "blog",webpackPrefetch: true*/ '../pages/BlogDetail'
   )
 );
 const Music = lazy(() =>
@@ -28,15 +28,15 @@ const Music = lazy(() =>
     webpackChunkName: "music",
     webpackPrefetch: true
   */
-    "../pages/Music"
+    '../pages/Music'
   )
 );
 const NotFoundPage = lazy(() =>
   import(
-    /*webpackChunkName: "not-found-page",webpackPrefetch: true*/ "../components/Common/NotFoundPage"
+    /*webpackChunkName: "not-found-page",webpackPrefetch: true*/ '../components/Common/NotFoundPage'
   )
 );
-@inject("layoutStore")
+@inject('layoutStore')
 @observer
 export default class Routers extends Component {
   componentDidMount() {

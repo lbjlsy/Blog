@@ -11,12 +11,12 @@ class LayoutStore {
 
   getPlayerList = flow(function*() {
     try {
-      this.articleList = (yield layoutApi.getPlayerList()).data || [];
+      this.playerList = (yield layoutApi.getPlayerList()).data || [];
       const ap = new APlayer({
         container: document.getElementById("player"),
         fixed: true,
         lrcType: 1,
-        audio: this.articleList
+        audio: this.playerList
       });
       ap.lrc.show();
     } finally {

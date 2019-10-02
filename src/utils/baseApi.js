@@ -9,8 +9,7 @@ switch (baseUrl) {
 	break
   case 'localhost':
   default:
-    // baseApi = 'http://localhost:3000/api/'
-    baseApi = 'https://www.lebronjames.top/api/'
+    baseApi = 'http://localhost:3000/api/'
     break
 }
 export default baseApi
