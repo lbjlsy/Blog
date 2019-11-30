@@ -10,32 +10,13 @@ import { routePath } from '@utils/constants';
 import Loading from '@/components/Common/Loading';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-const Home = lazy(() =>
-  import(/*webpackChunkName: "home",webpackPrefetch: true*/ '../pages/Home')
-);
-const Blog = lazy(() =>
-  import(/*webpackChunkName: "blog",webpackPrefetch: true*/ '../pages/Blog')
-);
-const BlogDetail = lazy(() =>
-  import(
-    /*webpackChunkName: "blog",webpackPrefetch: true*/ '../pages/BlogDetail'
-  )
-);
-const Music = lazy(() =>
-  import(
-    /*
-    webpackChunkName: "music",
-    webpackPrefetch: true
-  */
-    '../pages/Music'
-  )
-);
-const NotFoundPage = lazy(() =>
-  import(
-    /*webpackChunkName: "not-found-page",webpackPrefetch: true*/ '../components/Common/NotFoundPage'
-  )
-);
+const lazyComponents = (path) => lazy(() => import(`@/pages/${path}`))
+lazyComponents
+const Home = lazyComponents('Home')
+const Blog = lazyComponents('Blog')
+const BlogDetail = lazyComponents('BlogDetail')
+const Music = lazyComponents('Music')
+const NotFoundPage = lazyComponents('Common/NotFoundPage')
 @inject('layoutStore')
 @observer
 export default class Routers extends Component {
@@ -51,31 +32,26 @@ export default class Routers extends Component {
           <Switch>
             <Route exact path="/" render={() => <Redirect to="/home" push />} />
             <Route
+              exact
               path={`${routePath.tag}:id`}
               render={props => <Blog {...props} key={location.pathname} />}
             />
             <Route
+              exact
               path={routePath.blog}
               render={props => <Blog {...props} key={location.pathname} />}
             />
             <Route
+              exact
               path={routePath.blogDetail}
               render={props => (
                 <BlogDetail {...props} key={location.pathname} />
               )}
             />
-            <Route path={routePath.home} render={() => <Home />} />
-            <Route path={routePath.music} render={() => <Music />} />
-            <Route path={routePath.notFound} render={() => <NotFoundPage />} />
+            <Route path={routePath.home} exact render={() => <Home />} />
+            <Route path={routePath.music} exact render={() => <Music />} />
+            <Route path={routePath.notFound} exact render={() => <NotFoundPage />} />
             <Route render={() => <NotFoundPage />} />
-            {/* {routes.map(({ path, component }, index) => (
-              <Route
-                key={location.pathname}
-                exact
-                path={path}
-                component={component}
-              />
-            ))} */}
           </Switch>
           <Footer />
           <Player />

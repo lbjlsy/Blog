@@ -1,18 +1,21 @@
-import React from "react";
-import { observer, inject } from "mobx-react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { observer, inject } from 'mobx-react';
+import history from '@/history';
+import { Link } from 'react-router-dom';
 import styles from './tags.module.less';
-import { routePath } from "@utils/constants";
+import { routePath } from '@utils/constants';
 
-@inject("articleStore")
+@inject('articleStore')
 @observer
 class Tag extends React.Component {
   state = {};
   componentDidMount() {
-    const { articleStore } = this.props
-    articleStore.getArticleTags()
+    const { articleStore } = this.props;
+    articleStore.getArticleTags();
   }
-
+  gotoTag = item => {
+    history.push({ pathname: `${routePath.tag}${item}` });
+  };
   render() {
     const { articleStore } = this.props;
     return (
@@ -22,8 +25,8 @@ class Tag extends React.Component {
         </h1>
         <ul className={styles.tags}>
           {articleStore.tags.map((item, index) => (
-            <li key={index}>
-              <Link to={`${routePath.tag}${item}`}>{item}</Link>
+            <li key={index} onClick={() => this.gotoTag(item)}>
+              <span>{item}</span>
             </li>
           ))}
         </ul>

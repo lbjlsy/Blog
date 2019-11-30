@@ -8,12 +8,6 @@ import { observer, inject } from 'mobx-react';
 @inject('homeStore')
 @observer
 class Home extends Component {
-  componentWillMount() {
-    console.log('Home Will Mount')
-  }
-  findNotFound = () => {
-    const { history, homeStore } = this.props;
-  };
   render() {
     const { homeStore } = this.props;
     return (
