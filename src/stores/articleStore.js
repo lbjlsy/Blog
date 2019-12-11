@@ -20,7 +20,8 @@ class ArticleStore {
   getArticleList = flow(function*() {
     try {
       this.articleListLoading = true;
-      this.articleList = (yield articleApi.getArticleList()).data || []
+      const data = (yield articleApi.getArticleList()).data || []
+      this.articleList = data.filter(item => item.status)
     } finally {
       this.articleListLoading = false;
     }
@@ -29,7 +30,8 @@ class ArticleStore {
   getTagDetail = flow(function*() {
     try {
       this.articleListLoading = true;
-      this.articleList = (yield articleApi.getTagDetail({ tag: this.curId })).data || []
+      const data = (yield articleApi.getTagDetail({ tag: this.curId })).data || []
+      this.articleList = data.filter(item => item.status)
     } finally {
       this.articleListLoading = false;
     }

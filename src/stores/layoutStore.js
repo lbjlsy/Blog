@@ -11,7 +11,8 @@ class LayoutStore {
 
   getPlayerList = flow(function*() {
     try {
-      this.playerList = (yield layoutApi.getPlayerList()).data || [];
+      const data = (yield layoutApi.getPlayerList()).data || [];
+      this.playerList = data.filter(item => item.status)
       const ap = new APlayer({
         container: document.getElementById("player"),
         fixed: true,
