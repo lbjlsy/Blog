@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import cs from "classnames";
-import _ from "lodash";
+import throttle from "lodash/throttle";
 import { Link } from "react-router-dom";
 import styles from "./index.module.less";
 
@@ -11,7 +11,7 @@ class Header extends Component {
   componentDidMount() {
     window.addEventListener(
       "scroll",
-      _.throttle((e) => {
+      throttle((e) => {
         var t = document.documentElement.scrollTop || document.body.scrollTop;
         if (!t) {
           this.setState({

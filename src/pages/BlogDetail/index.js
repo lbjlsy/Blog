@@ -1,12 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 import { observer, inject } from 'mobx-react';
-import { Link, RouteComponentProps } from 'react-router-dom';
 import Helmet from 'react-helmet';
-import cs from 'classnames';
-import _ from 'lodash';
-
+import throttle from 'lodash/throttle';
 import tocbot from 'tocbot';
-import hljs from 'highlight.js';
+import hljs from 'highlight.js/lib/highlight';
+import javascript from 'highlight.js/lib/languages/javascript';
+hljs.registerLanguage('javascript', javascript);
 import baguetteBox from 'baguettebox.js';
 import { TwitterIcon, TwitterShareButton } from 'react-share';
 
@@ -14,16 +13,13 @@ import 'baguettebox.js/dist/baguetteBox.min.css';
 import 'tocbot/dist/tocbot.css';
 import './index.less';
 
-// import Like from '@components/Post/Like/Like';
 import Skeleton from '@/components/Skeletons/ArticleDetail';
 
 import { formatJSONDate } from '@/utils/tools';
-// import routePath from '@constants/routePath';
 
 @inject('articleStore')
 @observer
 class BlogDetail extends React.Component {
-
   async componentDidMount() {
     const { articleStore } = this.props;
     await articleStore.getArticleDetail();
@@ -35,21 +31,15 @@ class BlogDetail extends React.Component {
     this.showImageAlt();
     this.wrapImg();
     this.initBaguetteBox();
-    // await articleStore.getIp();
-    // articleStore.getLikes(curId, articleStore.curIp);
-    // articleStore.increasePV(curId);
-    // initLivere();
   }
 
   wrapImg = () => {
     const imgDom = document.querySelectorAll('.article_content img');
     const imgWrapper = document.querySelectorAll('.img-group');
     for (let i = 0, len = imgDom.length; i < len; i += 1) {
-      imgWrapper[i].innerHTML = `<a href='${
-        imgDom[i].src
-      }' data-caption='${imgDom[i].alt}'>${
-        imgWrapper[i].innerHTML
-      }</a>`;
+      imgWrapper[
+        i
+      ].innerHTML = `<a href='${imgDom[i].src}' data-caption='${imgDom[i].alt}'>${imgWrapper[i].innerHTML}</a>`;
     }
   };
 
@@ -65,7 +55,7 @@ class BlogDetail extends React.Component {
     tocbot.init({
       tocSelector: '.menu',
       contentSelector: '.article_content',
-      headingSelector: 'h2, h3, h4, h5, h6',
+      headingSelector: 'h2, h3, h4, h5, h6'
     });
   }
 
@@ -74,7 +64,7 @@ class BlogDetail extends React.Component {
 
     window.addEventListener(
       'scroll',
-      _.throttle(() => {
+      throttle(() => {
         const tops =
           document.documentElement.scrollTop || document.body.scrollTop;
         if (tops < 440) {
@@ -82,7 +72,7 @@ class BlogDetail extends React.Component {
         } else {
           menu.style.top = '4rem';
         }
-      }, 10),
+      }, 10)
     );
   }
 
@@ -94,7 +84,7 @@ class BlogDetail extends React.Component {
       imgTag[i].parentNode.classList.add('img-group');
       imgTag[i].parentNode.insertAdjacentHTML(
         'beforeend',
-        `<span class='img-info'>${imgList[i]}</span>`,
+        `<span class='img-info'>${imgList[i]}</span>`
       );
     }
   }
@@ -108,7 +98,7 @@ class BlogDetail extends React.Component {
         i
       ].innerHTML.replace(
         /\n/g,
-        '\n</li><li class="hljs-ln-line">',
+        '\n</li><li class="hljs-ln-line">'
       )}\n</li></ol>`;
     }
   }
@@ -133,35 +123,32 @@ class BlogDetail extends React.Component {
     const { articleStore } = this.props;
     const isWebp = window.localStorage.getItem('isWebp') === 'true';
     return (
-      <main className='article_detail_wrapper'>
+      <main className="article_detail_wrapper">
         <Helmet>
           <title>{articleStore.articleDetail.title}</title>
-          <meta name='twitter:card' content='summary_large_image' />
-          <meta name='twitter:site' content='@YanceyOfficial' />
-          <meta name='twitter:creator' content='@YanceyOfficial' />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@YanceyOfficial" />
+          <meta name="twitter:creator" content="@YanceyOfficial" />
+          <meta name="og:title" content={articleStore.articleDetail.title} />
           <meta
-            name='og:title'
-            content={articleStore.articleDetail.title}
-          />
-          <meta
-            name='og:description'
+            name="og:description"
             content={articleStore.articleDetail.summary}
           />
           <meta
-            name='og:image'
+            name="og:image"
             content={`https:${articleStore.articleDetail.header_cover}`}
           />
-          <meta name='og:url' content={location.href} />
+          <meta name="og:url" content={location.href} />
         </Helmet>
 
         <section
-          className='article_meta_wrapper'
+          className="article_meta_wrapper"
           style={{
             backgroundImage: `url(${
               isWebp
                 ? `${articleStore.articleDetail.header_cover}${webpSuffix}`
                 : articleStore.articleDetail.header_cover
-            })`,
+            })`
           }}
         />
 
@@ -169,132 +156,31 @@ class BlogDetail extends React.Component {
           <Skeleton />
         ) : (
           <>
-            <div className='content_wrapper'>
-              <h1 className='title'>{articleStore.articleDetail.title}</h1>
+            <div className="content_wrapper">
+              <h1 className="title">{articleStore.articleDetail.title}</h1>
               <span
-                className='publish_date'
+                className="publish_date"
                 data-modify={`最后修改时间: ${formatJSONDate(
-                  articleStore.articleDetail.last_modified_date,
+                  articleStore.articleDetail.last_modified_date
                 )}`}
               >
                 发布时间:{' '}
                 {formatJSONDate(articleStore.articleDetail.publish_date)}
               </span>
-              <span className='page_view'>
-                {/* {articleStore.articleDetail.pv_count} 阅读 */}
-              </span>
-              <ul className='tags_list'>
-                {/* {articleStore.articleDetail.tags.map(
-                  (item, index) => (
-                    <li key={index}>
-                      <Link to={`/t/${item}`}>{item}</Link>
-                    </li>
-                  ),
-                )} */}
-              </ul>
-              {/* summary */}
-              <blockquote className='summary'>
+              <blockquote className="summary">
                 {articleStore.articleDetail.summary}
               </blockquote>
-              {/* content */}
               <section
-                className='article_content'
+                className="article_content"
                 dangerouslySetInnerHTML={{
-                  __html: articleStore.articleDetail.content,
+                  __html: articleStore.articleDetail.content
                 }}
               />
-              {/* menu */}
-              <aside className='menu' />
+              <aside className="menu" />
             </div>
-            <div className='attachment_wrapper'>
-              {/* copyright share like */}
-              {/* <section className='copyright_share_wrapper'>
-                <a href={byNcSa} target='_blank' rel='noopener noreferrer'>
-                  Attribution-NonCommercial-ShareAlike 4.0 International (CC
-                  BY-NC-SA 4.0)
-                </a>
-                share To Twitter Btn
-                <div className='share_btn'>
-                  <TwitterShareButton
-                    title={articleStore.articleDetail.title}
-                    url={window.location.href}
-                    via='YanceyOfficial'
-                    className='Demo__some-network__share-button'
-                  >
-                    <TwitterIcon size={32} round />
-                  </TwitterShareButton>
-                  <Like />
-                </div>
-              </section> */}
-              {/* Previous and Next Articles Link */}
-              <section className='prev_next_wrapper'>
-                {/* {JSON.stringify(articleStore.detail.previousArticle) ===
-                '{}' ? null : (
-                  <Link
-                    className='prev_next'
-                    to={`/article/${
-                      articleStore.detail.previousArticle.id
-                    }`}
-                  >
-                    <div
-                      className={cs('prev_next_container', 'prev')}
-                      style={{
-                        backgroundImage: `url(${
-                          isWebp
-                            ? `${
-                                articleStore.detail.previousArticle
-                                  .header_cover
-                              }${webpSuffix}`
-                            : articleStore.detail.previousArticle.header_cover
-                        })`,
-                      }}
-                    >
-                      <div className={cs('prev_next_meta', 'prev_meta')}>
-                        <p className='directive'>PREVIOUS POST</p>
-                        <p className='title'>
-                          {articleStore.detail.previousArticle.title}
-                        </p>
-                      </div>
-                      <div className='overlay' />
-                    </div>
-                  </Link>
-                )} */}
-                {/* {JSON.stringify(articleStore.detail.nextArticle) ===
-                '{}' ? null : (
-                  <Link
-                    className='prev_next'
-                    to={`/article/${
-                      articleStore.detail.nextArticle.id
-                    }`}
-                  >
-                    <div
-                      className={cs('prev_next_container', 'next')}
-                      style={{
-                        backgroundImage: `url(${
-                          isWebp
-                            ? `${
-                                articleStore.detail.nextArticle.header_cover
-                              }${webpSuffix}`
-                            : articleStore.detail.nextArticle.header_cover
-                        })`,
-                      }}
-                    >
-                      <div className={cs('prev_next_meta', 'next_meta')}>
-                        <p className='directive'>NEXT POST</p>
-                        <p className='title'>
-                          {articleStore.detail.nextArticle.title}
-                        </p>
-                      </div>
-                      <div className='overlay' />
-                    </div>
-                  </Link>
-                )} */}
-              </section>
-              {/* Livere Comment */}
-              <section className='comment_wrapper'>
-                {/* <p className='comment_title'>Comments</p> */}
-                {/* <div id='lv-container' data-id='city' data-uid={livere} /> */}
-              </section>
+            <div className="attachment_wrapper">
+              <section className="prev_next_wrapper"></section>
+              <section className="comment_wrapper"></section>
             </div>
           </>
         )}
