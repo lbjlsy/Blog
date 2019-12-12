@@ -17,8 +17,7 @@ class Carousel extends Component {
   }
   prevImage = () => {
     let { backgDom, index } = this.state
-    const { homeStore } = this.props
-    const { coverImage } = homeStore
+    const { homeStore: { coverImage } } = this.props
     if (index === 0) {
       backgDom.style.backgroundImage = `url(${
         coverImage[coverImage.length - 1].image

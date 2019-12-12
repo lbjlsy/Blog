@@ -15,7 +15,8 @@ class HomeStore {
   getCoverList = flow(function* (type) {
     try {
       this.coverLoading = true;
-      this.coverImage = (yield homeApi.getCoverList()).data || {}
+      const data = (yield homeApi.getCoverList()).data || {}
+      this.coverImage = data.filter(item => !!item.status)
       this.loadImage(this.coverImage[0].image)
     } finally {
       this.coverLoading = false;

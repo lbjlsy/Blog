@@ -6,7 +6,7 @@ import { observer, inject } from 'mobx-react';
 import { formatJSONDate } from '@/utils/tools';
 import Skeleton from '../Skeletons/ArticleList';
 import styles from './index.module.less';
-
+import { routePath } from '@utils/constants';
 @inject('articleStore')
 @observer
 class BlogList extends React.Component {
@@ -38,10 +38,9 @@ class BlogList extends React.Component {
               >
                 <div className={cs(styles.basic_item_left)}>
                   <p className={cs(styles.item_released)}>
-                    {index}
                     Released {formatJSONDate(item.publish_date)}
                   </p>
-                  <Link to={`/article/${item.id}`}>
+                  <Link to={`${routePath.blogDetail}${item.id}`}>
                     <h3 className={cs(styles.item_title)}>{item.title}</h3>
                   </Link>
                   <div className={cs(styles.item_information)}></div>
@@ -51,7 +50,7 @@ class BlogList extends React.Component {
                   </div>
                 </div>
                 <div className={cs(styles.basic_item_right)}>
-                  <Link to={`/article/${item.id}`}>
+                  <Link to={`${routePath.blogDetail}${item.id}`}>
                     <figure className={cs(styles.container_img)}>
                       <img src={item.header_cover} />
                     </figure>
