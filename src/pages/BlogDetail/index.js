@@ -92,14 +92,7 @@ class BlogDetail extends React.Component {
   addLineNumbers() {
     const hljsDOM = document.querySelectorAll('.hljs');
     for (let i = 0, l = hljsDOM.length; i < l; i += 1) {
-      hljsDOM[
-        i
-      ].innerHTML = `<ol class="rounded-list"><li class="hljs-ln-line">${hljsDOM[
-        i
-      ].innerHTML.replace(
-        /\n/g,
-        '\n</li><li class="hljs-ln-line">'
-      )}\n</li></ol>`;
+      hljsDOM[i].innerHTML = `<ol class="rounded-list"><li class="hljs-ln-line">${hljsDOM[i].innerHTML.replace(/\n/g,'\n</li><li class="hljs-ln-line">')}\n</li></ol>`;
     }
   }
 

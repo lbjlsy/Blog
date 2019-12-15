@@ -16,7 +16,7 @@
     "baguettebox.js": "^1.11.0",
     "classnames": "^2.2.6",
     "copy-webpack-plugin": "^5.0.3",
-    "highlight.js": "^9.15.8",
+    "highlight.js": "^9.17.1",
     "history": "^4.9.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
