@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Carousel from './carousel';
 import styles from './index.module.less';
 import BlogList from '@/components/BlogList';
@@ -7,7 +7,7 @@ import { observer, inject } from 'mobx-react';
 
 @inject('homeStore')
 @observer
-class Home extends Component {
+class Home extends React.Component {
   render() {
     const { homeStore } = this.props;
     return (

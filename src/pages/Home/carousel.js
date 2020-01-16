@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './carousel.less';
 import { observer, inject } from 'mobx-react';
 
 @inject('homeStore')
 @observer
-class Carousel extends Component {
+class Carousel extends React.Component {
   state = {
     backgDom: null,
     index: 0

@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import classnames from 'classnames';
+import React from 'react';
 import './index.less';
 import BlogList from '@/components/BlogList';
 import Tags from '@/components/BlogList/tags';
 
-export default class Blog extends Component {
+class Blog extends React.Component {
   render() {
     return (
       <main className="container">
@@ -21,3 +20,5 @@ export default class Blog extends Component {
     );
   }
 }
+
+export default Blog
