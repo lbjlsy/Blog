@@ -25,9 +25,11 @@ class Tag extends React.Component {
         </h1>
         <ul className={styles.tags}>
           {articleStore.tags.map((item, index) => (
-            <li key={index} onClick={() => this.gotoTag(item)}>
-              <span>{item}</span>
-            </li>
+            <Link key={index} to={`${routePath.tag}${item}`}>
+              <li key={index}>
+                <span>{item}</span>
+              </li>
+            </Link>
           ))}
         </ul>
       </section>

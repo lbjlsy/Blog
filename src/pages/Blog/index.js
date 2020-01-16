@@ -4,7 +4,7 @@ import './index.less';
 import BlogList from '@/components/BlogList';
 import Tags from '@/components/BlogList/tags';
 
-class Blog extends Component {
+export default class Blog extends Component {
   render() {
     return (
       <main className="container">
@@ -21,5 +21,3 @@ class Blog extends Component {
     );
   }
 }
-
-export default Blog;

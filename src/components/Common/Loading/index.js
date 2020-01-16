@@ -14,11 +14,9 @@ const Loading = () => {
     textAlign: 'center',
     color: '#000000',
     opacity: 0.2,
-    background: `url(${LoadingUrl}) no-repeat center center`,
-  }
-  return (
-      <figure style={styles}/>
-  )
-}
+    background: `url(${LoadingUrl}) no-repeat center center`
+  };
+  return <figure style={styles} />;
+};
 
 export default Loading;

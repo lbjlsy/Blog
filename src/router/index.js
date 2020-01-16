@@ -1,11 +1,10 @@
-import React, { lazy, Suspense, Component } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { observer, inject } from 'mobx-react';
 import { Route, Switch, Redirect, Router } from 'react-router-dom';
 import history from '@/history';
 import Header from '@/components/Common/Header';
 import Footer from '@/components/Common/Footer';
 import Player from '@/components/Player';
-import routes from '@/router/web';
 import { routePath } from '@utils/constants';
 import Loading from '@/components/Common/Loading';
 import { ToastContainer } from 'react-toastify';
@@ -16,10 +15,10 @@ const Home = lazyComponents('Home');
 const Blog = lazyComponents('Blog');
 const BlogDetail = lazyComponents('BlogDetail');
 const Music = lazyComponents('Music');
-const NotFoundPage = lazyComponents('Common/NotFoundPage');
+const NotFoundPage = lazy(() => import('@/components/Common/NotFoundPage'));
 @inject('layoutStore')
 @observer
-export default class Routers extends Component {
+export default class Routers extends React.Component {
   componentDidMount() {
     const { layoutStore } = this.props;
     layoutStore.getPlayerList();
@@ -30,8 +29,10 @@ export default class Routers extends Component {
         <Header />
         <Suspense fallback={<Loading />}>
           <Switch>
-            <Route exact path="/" render={() => <Redirect to="/home" push />} />
-            <Route exact path={`${routePath.tag}:id`} component={Blog} />
+            <Route
+              path={`${routePath.tag}:id`}
+              render={props => <Blog {...props} key={location.pathname} />}
+            />
             <Route exact path={routePath.blog} component={Blog} />
             <Route
               exact

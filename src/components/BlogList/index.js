@@ -3,6 +3,11 @@ import history from '@/history';
 import { Link } from 'react-router-dom';
 import cs from 'classnames';
 import { observer, inject } from 'mobx-react';
+import {
+  LazyLoadImage,
+  trackWindowScroll
+} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { formatJSONDate } from '@/utils/tools';
 import Skeleton from '../Skeletons/ArticleList';
 import styles from './index.module.less';
@@ -45,14 +50,20 @@ class BlogList extends React.Component {
                   </Link>
                   <div className={cs(styles.item_information)}></div>
                   <p className={cs(styles.item_introduction)}>{item.summary}</p>
-                  <div>
-                    <a>...</a>
+                  <div className={cs(styles.item_links)}>
+                    <Link to={`${routePath.blogDetail}${item.id}`}>...</Link>
                   </div>
                 </div>
                 <div className={cs(styles.basic_item_right)}>
                   <Link to={`${routePath.blogDetail}${item.id}`}>
                     <figure className={cs(styles.container_img)}>
-                      <img src={item.header_cover} />
+                      <LazyLoadImage
+                        alt={item.title}
+                        width="100%"
+                        height="100%"
+                        effect="blur"
+                        src={item.header_cover}
+                      />
                     </figure>
                   </Link>
                 </div>
@@ -65,4 +76,4 @@ class BlogList extends React.Component {
   }
 }
 
-export default BlogList;
+export default trackWindowScroll(BlogList);
