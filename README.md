@@ -7,21 +7,17 @@ Lebron james G.E.M Theme Blog
 
 ## Introduction
 
-这是我写的第一个博客网站。至于为什么写，因为公司项目都是使用vue，使用react练练手，还有是看到别人的博客太好看了😂
+这是我写的第一个博客网站。至于为什么写，因为公司项目都是使用vue，所以用react练练手，还有是看到别人的博客太好看了😂
 
-- 前端主要技术栈是react + react-router-4 + mobx;
-- 管理后台主要技术栈是react + react-router-4 + typescript + mobx
-- 后端主要技术栈是koa2 + mysql
+- 前端主要技术栈是React + React-Router-4 + Mobx;
+- 管理后台主要技术栈是React + React-Router-4 + Typescript + Mobx
+- 后端主要技术栈是Koa2 + Mysql
 
 ## Detail
 
 ### Global Component
 
 全局就是标配的header、footer、当然还有一个音乐播放器的组件。
-
-### Home Page
-
-![Blog](https://raw.githubusercontent.com/lbjlsy/Blog/master/src/assets/home-page.png)
 
 ## License
 
